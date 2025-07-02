@@ -18,12 +18,3 @@ export async function sendEmail(message, subject, userEmailAdd) {
         html: message,
       });
 }
-
-
-
-// Wrap in an async IIFE so we can use await.
-// (async () => {
-  
-
-//   console.log("Message sent:", info.messageId);
-// })();

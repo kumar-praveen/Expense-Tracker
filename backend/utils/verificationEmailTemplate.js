@@ -1,5 +1,3 @@
-import { generateVerificationCode } from "./generateVerificationCode.js";
-
 export const verificationEmailTemplate = (
   generateVerificationCode,
   fullname
