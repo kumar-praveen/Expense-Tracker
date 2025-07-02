@@ -22,9 +22,9 @@ import { Button } from "../ui/button";
 import { Loader2, Pencil } from "lucide-react";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
-import { useSelector } from "react-redux";
 import axios from "axios";
 import { toast } from "sonner";
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 function UpdateExpense({ expense, onUpdate }) {
   const [loading, setLoading] = useState(false);
@@ -55,7 +55,7 @@ function UpdateExpense({ expense, onUpdate }) {
     try {
       setLoading(true);
       const res = await axios.put(
-        `http://localhost:3000/api/v1/expense/update/${expense._id}`,
+        `${backendUrl}/api/v1/expense/update/${expense._id}`,
         formData,
         {
           headers: {

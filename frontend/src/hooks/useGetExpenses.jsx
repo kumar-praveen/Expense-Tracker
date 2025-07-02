@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setExpenses } from "../redux/expenseSlice";
 import { toast } from "sonner";
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 export const useGetExpenses = () => {
   const dispatch = useDispatch();
@@ -13,7 +14,7 @@ export const useGetExpenses = () => {
       try {
         axios.defaults.withCredentials = true;
         const res = await axios.get(
-          `http://localhost:3000/api/v1/expense/getall?category=${category}`
+          `${backendUrl}/api/v1/expense/getall?category=${category}`
         );
         if (res.data.success) {
           dispatch(setExpenses(res.data.expense));

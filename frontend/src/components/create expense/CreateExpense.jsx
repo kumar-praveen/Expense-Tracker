@@ -28,6 +28,7 @@ import { setExpenses } from "../../redux/expenseSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { Loader2 } from "lucide-react";
 import Loader from "../loader/Loader";
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 function CreateExpense() {
   const [formData, setFormData] = useState({
@@ -60,7 +61,7 @@ function CreateExpense() {
     try {
       setLoading(true);
       const res = await axios.post(
-        "http://localhost:3000/api/v1/expense/add",
+        `${backendUrl}/api/v1/expense/add`,
         formData,
         {
           headers: {

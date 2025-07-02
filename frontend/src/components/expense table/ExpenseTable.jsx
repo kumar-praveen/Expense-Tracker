@@ -9,8 +9,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Checkbox } from "../ui/checkbox";
-import { Expense } from "../../../../backend/models/expense.model";
 import { useSelector } from "react-redux";
 import { Newspaper, Pencil, Trash } from "lucide-react";
 import { Button } from "../ui/button";
@@ -18,6 +16,7 @@ import UpdateExpense from "../update expense/UpdateExpense";
 import axios from "axios";
 import { toast } from "sonner";
 import "../../App.css";
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 function ExpenseTable() {
   const { expenses } = useSelector((store) => store.expense);
@@ -37,7 +36,7 @@ function ExpenseTable() {
     if (userPermision) {
       try {
         const res = await axios.delete(
-          `http://localhost:3000/api/v1/expense/remove/${expenseId}`
+          `${backendUrl}/api/v1/expense/remove/${expenseId}`
         );
         if (res.data.success) {
           toast.success(res.data.message);

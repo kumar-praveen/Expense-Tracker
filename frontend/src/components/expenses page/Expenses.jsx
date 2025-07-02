@@ -29,7 +29,6 @@ function Expenses() {
       <Navbar />
 
       <div className="w-[95%] sm:w-[90%] md:w-[85%] lg:w-[80%] xl:w-[70%] mx-auto mt-4 flex flex-col gap-6">
-        {/* Header and Create Expense */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-3">
           <h1 className="text-xl sm:text-2xl md:text-3xl font-semibold text-center md:text-left">
             Track All Your Expenses
@@ -37,8 +36,6 @@ function Expenses() {
           <CreateExpense />
         </div>
 
-        {/* Filter Section */}
-        {/* Filter Section */}
         <div
           className="w-full flex flex-wrap items-center gap-4 
   justify-center lg:justify-start text-sm sm:text-base lg:text-lg font-medium mt-2"

@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setLoading } from "../../redux/authSlice";
 import { Loader2 } from "lucide-react";
 import Loader from "../loader/Loader";
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 function Signup() {
   const [input, setInput] = useState({
@@ -32,7 +33,7 @@ function Signup() {
     try {
       dispatch(setLoading(true));
       const res = await axios.post(
-        "http://localhost:3000/api/v1/user/signup",
+        `${backendUrl}/api/v1/user/signup`,
         input,
         {
           headers: {

@@ -8,8 +8,8 @@ import axios from "axios";
 import { toast } from "sonner";
 import { useDispatch, useSelector } from "react-redux";
 import { setAuthUser, setLoading, setUserName } from "../../redux/authSlice";
-import { Loader2 } from "lucide-react";
 import Loader from "../loader/Loader";
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 function Login() {
   const [input, setInput] = useState({
@@ -30,7 +30,7 @@ function Login() {
     try {
       dispatch(setLoading(true));
       const res = await axios.post(
-        "http://localhost:3000/api/v1/user/login",
+        `${backendUrl}/api/v1/user/login`,
         input,
         {
           headers: {

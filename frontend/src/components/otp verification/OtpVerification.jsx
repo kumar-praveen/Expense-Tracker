@@ -3,13 +3,13 @@ import Logo from "../shared/Logo";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "sonner";
 import { useDispatch, useSelector } from "react-redux";
 import { setLoading } from "../../redux/authSlice";
-import { Loader2 } from "lucide-react";
 import Loader from "../loader/Loader";
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 function OtpVerification() {
   const [input, setInput] = useState({
@@ -30,7 +30,7 @@ function OtpVerification() {
     try {
       dispatch(setLoading(true));
       const res = await axios.post(
-        "http://localhost:3000/api/v1/user/verify-otp",
+        `${backendUrl}/api/v1/user/verify-otp`,
         input,
         {
           headers: {
@@ -48,8 +48,7 @@ function OtpVerification() {
     } catch (error) {
       dispatch(setLoading(false));
       toast.error(error.response.data.message);
-    }
-    finally{
+    } finally {
       dispatch(setLoading(false));
     }
   };
