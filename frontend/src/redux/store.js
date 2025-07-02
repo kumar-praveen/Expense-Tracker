@@ -1,8 +1,6 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import authReducer from "./authSlice";
 import expenseReducer from "./expenseSlice";
-
-import { createRoot } from "react-dom/client";
 import {
   persistStore,
   persistReducer,
@@ -14,7 +12,6 @@ import {
   REGISTER,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import { PersistGate } from "redux-persist/integration/react";
 
 const persistConfig = {
   key: "root",
@@ -30,10 +27,6 @@ const rootReducer = combineReducers({
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
-  // reducer: {
-  //   auth: authReducer,
-  //   expense: expenseReducer,
-  // },
   reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

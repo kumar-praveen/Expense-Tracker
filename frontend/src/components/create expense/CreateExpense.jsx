@@ -26,7 +26,6 @@ import axios from "axios";
 import { toast } from "sonner";
 import { setExpenses } from "../../redux/expenseSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { Loader2 } from "lucide-react";
 import Loader from "../loader/Loader";
 const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
@@ -122,7 +121,6 @@ function CreateExpense() {
               />
             </div>
 
-            {/* Amount */}
             <div className="grid gap-2">
               <Label htmlFor="amount" className="text-gray-300">
                 Amount
@@ -137,7 +135,6 @@ function CreateExpense() {
               />
             </div>
 
-            {/* Category */}
             <div className="grid gap-2">
               <Label className="text-gray-300">Category</Label>
               <Select onValueChange={selectValueChangeHandler}>

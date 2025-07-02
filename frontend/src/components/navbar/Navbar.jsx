@@ -8,6 +8,7 @@ import { toast } from "sonner";
 import { useSelector, useDispatch } from "react-redux";
 import { persistor } from "../../redux/store.js";
 import { resetExpenseState } from "../../redux/expenseSlice.js";
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 function Navbar() {
   const { user, userName } = useSelector((store) => store.auth);
@@ -17,7 +18,7 @@ function Navbar() {
 
   const logoutHandler = async () => {
     try {
-      const res = await axios.get("http://localhost:3000/api/v1/user/logout");
+      const res = await axios.get(`${backendUrl}/api/v1/user/logout`);
       if (res.data.success) {
         toast(res.data.message);
         dispatch(resetExpenseState());
