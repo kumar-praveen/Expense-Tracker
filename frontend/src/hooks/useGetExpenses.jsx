@@ -19,7 +19,7 @@ export const useGetExpenses = () => {
         if (res.data.success) {
           dispatch(setExpenses(res.data.expense));
         } else {
-          category = ""
+          category = "";
           dispatch(setExpenses([]));
           toast.warning("No expenses found");
         }
@@ -28,5 +28,5 @@ export const useGetExpenses = () => {
       }
     };
     fetchExpenses();
-  }, [dispatch, category]);
+  }, [category]);
 };
