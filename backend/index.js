@@ -11,17 +11,19 @@ dotenv.config({});
 const app = express();
 const port = 3000;
 
-//middleware
-app.use(express.json());
-app.use(urlencoded({ extended: true }));
-app.use(cookieParser());
+
 const corsOptions = {
-  origin: process.env.FRONTEND_URL,
+  origin: process.env.FRONTEND_URL, 
   credentials: true,
 };
 app.use(cors(corsOptions));
 
-//apis
+
+app.use(express.json());
+app.use(urlencoded({ extended: true }));
+app.use(cookieParser());
+
+
 app.use("/api/v1/user", userRoute);
 app.use("/api/v1/expense", expenseRoute);
 
@@ -30,6 +32,6 @@ app.listen(port, () => {
   connectDb();
 });
 
-app.get("/", (req, res) => {
-  res.send("Welcome this is root route");
-});
+// app.get("/", (req, res) => {
+//   res.send("Welcome this is root route");
+// });
