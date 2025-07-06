@@ -50,6 +50,8 @@ function UpdateExpense({ expense, onUpdate }) {
     }));
   };
 
+  const token = localStorage.getItem("token");
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -60,6 +62,7 @@ function UpdateExpense({ expense, onUpdate }) {
         {
           headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
           },
           withCredentials: true,
         }

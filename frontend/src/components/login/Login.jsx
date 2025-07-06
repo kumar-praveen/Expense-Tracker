@@ -40,7 +40,7 @@ function Login() {
         }
       );
       if (res.data.success) {
-        dispatch(setLoading(false));
+        localStorage.setItem("token", res.data.token);
         toast.success(res.data.message);
         dispatch(setAuthUser(res.data.user));
         dispatch(setUserName(res.data.user.fullname));

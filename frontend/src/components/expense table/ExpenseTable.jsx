@@ -31,12 +31,18 @@ function ExpenseTable() {
   }, 0);
 
   const handleExpenseDelete = async (expenseId) => {
+    const token = localStorage.getItem("token");
     const userPermision = confirm("Are you sure ?");
 
     if (userPermision) {
       try {
         const res = await axios.delete(
-          `${backendUrl}/api/v1/expense/remove/${expenseId}`
+          `${backendUrl}/api/v1/expense/remove/${expenseId}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
         );
         if (res.data.success) {
           toast.success(res.data.message);

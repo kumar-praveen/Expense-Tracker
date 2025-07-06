@@ -59,14 +59,16 @@ function CreateExpense() {
     e.preventDefault();
     try {
       setLoading(true);
+      const token = localStorage.getItem("token");
+
       const res = await axios.post(
         `${backendUrl}/api/v1/expense/add`,
         formData,
         {
           headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
           },
-          withCredentials: true,
         }
       );
 
@@ -74,13 +76,16 @@ function CreateExpense() {
         dispatch(setExpenses([...expenses, res.data.expense]));
         toast.success(res.data.message);
         setIsDialogOpen(false);
+        setFormData({ description: "", amount: "", category: "" }); // reset form
       }
     } catch (error) {
       console.log(error);
+      toast.error(error?.response?.data?.message || "Something went wrong");
     } finally {
       setLoading(false);
     }
   };
+  
 
   return (
     <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>

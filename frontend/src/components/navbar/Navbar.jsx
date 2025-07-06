@@ -18,11 +18,17 @@ function Navbar() {
 
   const logoutHandler = async () => {
     try {
-      const res = await axios.get(`${backendUrl}/api/v1/user/logout`);
+      const token = localStorage.getItem("token");
+      const res = await axios.get(`${backendUrl}/api/v1/user/logout`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       if (res.data.success) {
         toast(res.data.message);
         dispatch(resetExpenseState());
         await persistor.purge();
+        localStorage.removeItem("token");
         navigate("/");
       }
     } catch (error) {

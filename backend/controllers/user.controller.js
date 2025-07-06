@@ -171,6 +171,7 @@ export const login = async (req, res) => {
           fullname: user.fullname,
           email: user.email,
         },
+        token,
         success: true,
       });
   } catch (error) {

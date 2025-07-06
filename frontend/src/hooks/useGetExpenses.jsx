@@ -10,11 +10,17 @@ export const useGetExpenses = () => {
   let { category } = useSelector((state) => state.expense);
 
   useEffect(() => {
+    const token = localStorage.getItem("token");
     const fetchExpenses = async () => {
       try {
         axios.defaults.withCredentials = true;
         const res = await axios.get(
-          `${backendUrl}/api/v1/expense/getall?category=${category}`
+          `${backendUrl}/api/v1/expense/getall?category=${category}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
         );
         if (res.data.success) {
           dispatch(setExpenses(res.data.expense));
@@ -28,5 +34,5 @@ export const useGetExpenses = () => {
       }
     };
     fetchExpenses();
-  }, [category]);
+  }, [category, dispatch]);
 };
