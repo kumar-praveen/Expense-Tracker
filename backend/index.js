@@ -13,7 +13,7 @@ const port = 3000;
 
 
 const corsOptions = {
-  origin: process.env.FRONTEND_URL, 
+  origin: ["http://localhost:5173", process.env.FRONTEND_URL], 
   credentials: true,
 };
 app.use(cors(corsOptions));
