@@ -40,6 +40,7 @@ function Login() {
         }
       );
       if (res.data.success) {
+        console.log(res.data.token)
         localStorage.setItem("token", res.data.token);
         toast.success(res.data.message);
         dispatch(setAuthUser(res.data.user));
