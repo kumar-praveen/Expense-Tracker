@@ -24,7 +24,7 @@ export const useGetExpenses = () => {
         );
         if (res.data.success) {
           dispatch(setExpenses(res.data.expense));
-          toast.success(`All expenses of catergory ${category}`);
+          toast.success(`All expenses of catergory: ${category}`);
         }
       } catch (err) {
         if (err.response && err.response.status === 404) {

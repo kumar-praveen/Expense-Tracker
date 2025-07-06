@@ -57,12 +57,6 @@ function ExpenseTable() {
     }
   };
 
-  const handleExpenseUpdate = (updatedExpense) => {
-    setTempExpense((prev) =>
-      prev.map((exp) => (exp._id === updatedExpense._id ? updatedExpense : exp))
-    );
-  };
-
   return (
     <div className="w-full overflow-x-auto">
       <table className="w-full text-xs sm:text-sm table-auto">
@@ -94,8 +88,11 @@ function ExpenseTable() {
               >
                 <td className="px-1 py-2 break-words">{expense.description}</td>
                 <td className="px-1 py-2">{expense.category}</td>
-                <td className="px-1 py-2">
-                  {expense.createdAt?.split("T")[0]}
+                <td className="px-1 py-2 whitespace-nowrap">
+                  {new Date(expense.createdAt)
+                    .toLocaleDateString("IN")
+                    .split("/")
+                    .join("-")}
                 </td>
                 <td className="px-1 py-2">
                   <div className="flex justify-center items-center gap-1">
