@@ -57,6 +57,12 @@ function ExpenseTable() {
     }
   };
 
+  const handleExpenseUpdate = (updatedExpense) => {
+    setTempExpense((prev) =>
+      prev.map((exp) => (exp._id === updatedExpense._id ? updatedExpense : exp))
+    );
+  };
+
   return (
     <div className="w-full overflow-x-auto">
       <table className="w-full text-xs sm:text-sm table-auto">
@@ -102,12 +108,7 @@ function ExpenseTable() {
                     >
                       <Trash className="text-white w-[12px] h-[12px] sm:w-[14px] sm:h-[14px]" />
                     </button>
-                    <button
-                      onClick={() => openUpdateDialog(expense)}
-                      className="bg-orange-500 hover:bg-orange-600 p-[5px] sm:p-[6px] rounded-md flex items-center justify-center"
-                    >
-                      <Pencil className="text-white w-[12px] h-[12px] sm:w-[14px] sm:h-[14px]" />
-                    </button>
+                    <UpdateExpense expense={expense} onUpdate={handleExpenseUpdate}/>
                   </div>
                 </td>
                 <td className="px-1 py-2">₹{expense.amount}</td>

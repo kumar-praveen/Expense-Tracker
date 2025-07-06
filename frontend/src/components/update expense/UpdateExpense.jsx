@@ -85,12 +85,12 @@ function UpdateExpense({ expense, onUpdate }) {
   return (
     <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
       <DialogTrigger asChild>
-        <Button className="bg-orange-500 hover:bg-orange-600">
+        <button className="bg-orange-500 hover:bg-orange-600 p-[5px] sm:p-[6px] rounded-md flex items-center justify-center">
           <Pencil
             onClick={() => setIsDialogOpen(true)}
-            className="text-white"
+            className="text-white w-[12px] h-[12px] sm:w-[14px] sm:h-[14px]"
           />
-        </Button>
+        </button>
       </DialogTrigger>
 
       <DialogContent className="sm:max-w-[425px] bg-[#1f2937] border border-[#374151] rounded-lg shadow-xl text-gray-200">
