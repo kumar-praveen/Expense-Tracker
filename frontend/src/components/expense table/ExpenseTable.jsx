@@ -64,69 +64,71 @@ function ExpenseTable() {
   };
 
   return (
-    <Table>
-      <TableCaption>A list of your recent expenses.</TableCaption>
-      <TableHeader className="bg-[#1e1e2f] border-b border-[#2c2c3a] text-white">
-        <TableRow className="text-sm font-semibold text-gray-200 uppercase tracking-wider">
-          <TableHead className="text-center">Description</TableHead>
-          <TableHead className="text-center">Category</TableHead>
-          <TableHead className="text-center">Date</TableHead>
-          <TableHead className="text-center">Actions</TableHead>
-          <TableHead className="text-center">Amount</TableHead>
-        </TableRow>
-      </TableHeader>
-      <TableBody>
-        {tempExpense.length === 0 ? (
-          <TableRow>
-            <TableCell
-              colSpan={6}
-              className="text-center bg-[#1f2937] text-gray-400 italic py-6 rounded-md"
-            >
-              Start Adding Your Expenses
-            </TableCell>
-          </TableRow>
-        ) : (
-          tempExpense?.map((expense) => (
-            <TableRow key={expense._id}>
-              <TableCell className="text-center text-sm sm:text-base">
-                {expense.description}
-              </TableCell>
-              <TableCell className="text-center text-sm sm:text-base">
-                {expense.category}
-              </TableCell>
-              <TableCell className="text-center text-sm sm:text-base">
-                {expense.createdAt?.split("T")[0]}
-              </TableCell>
-              <TableCell className="text-center text-sm sm:text-base">
-                <div className="flex items-center gap-5">
-                  <Button
-                    onClick={() => handleExpenseDelete(expense._id)}
-                    className="bg-red-500 hover:bg-red-600"
-                  >
-                    <Trash className="text-white w-4 h-4" />
-                  </Button>
-                  <UpdateExpense
-                    expense={expense}
-                    onUpdate={handleExpenseUpdate}
-                  />
-                </div>
-              </TableCell>
-              <TableCell className="text-center text-sm sm:text-base">
-                {expense.amount}
-              </TableCell>
-            </TableRow>
-          ))
-        )}
-      </TableBody>
-      <TableFooter>
-        <TableRow className="bg-[#111827] text-white font-semibold text-lg">
-          <TableCell colSpan={4}>Total</TableCell>
-          <TableCell className="text-center text-sm sm:text-base">
-            ₹{totalAmount}
-          </TableCell>
-        </TableRow>
-      </TableFooter>
-    </Table>
+    <div className="w-full overflow-x-auto">
+      <table className="w-full text-xs sm:text-sm table-auto">
+        <thead>
+          <tr className="bg-[#1e1e2f] text-white text-center">
+            <th className="px-1 py-2 whitespace-nowrap">Description</th>
+            <th className="px-1 py-2 whitespace-nowrap">Category</th>
+            <th className="px-1 py-2 whitespace-nowrap">Date</th>
+            <th className="px-1 py-2 whitespace-nowrap">Actions</th>
+            <th className="px-1 py-2 whitespace-nowrap">Amount</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {tempExpense.length === 0 ? (
+            <tr>
+              <td
+                colSpan={5}
+                className="text-center bg-[#1f2937] text-gray-400 italic py-6 rounded-md"
+              >
+                Start Adding Your Expenses
+              </td>
+            </tr>
+          ) : (
+            tempExpense.map((expense) => (
+              <tr
+                key={expense._id}
+                className="text-center border-b border-gray-700"
+              >
+                <td className="px-1 py-2 break-words">{expense.description}</td>
+                <td className="px-1 py-2">{expense.category}</td>
+                <td className="px-1 py-2">
+                  {expense.createdAt?.split("T")[0]}
+                </td>
+                <td className="px-1 py-2">
+                  <div className="flex justify-center items-center gap-1">
+                    <button
+                      onClick={() => handleExpenseDelete(expense._id)}
+                      className="bg-red-500 hover:bg-red-600 p-[5px] sm:p-[6px] rounded-md flex items-center justify-center"
+                    >
+                      <Trash className="text-white w-[12px] h-[12px] sm:w-[14px] sm:h-[14px]" />
+                    </button>
+                    <button
+                      onClick={() => openUpdateDialog(expense)}
+                      className="bg-orange-500 hover:bg-orange-600 p-[5px] sm:p-[6px] rounded-md flex items-center justify-center"
+                    >
+                      <Pencil className="text-white w-[12px] h-[12px] sm:w-[14px] sm:h-[14px]" />
+                    </button>
+                  </div>
+                </td>
+                <td className="px-1 py-2">₹{expense.amount}</td>
+              </tr>
+            ))
+          )}
+        </tbody>
+
+        <tfoot>
+          <tr className="bg-[#111827] text-white font-semibold text-sm sm:text-base">
+            <td colSpan={4} className="text-left px-1 py-2">
+              Total
+            </td>
+            <td className="text-center px-1 py-2">₹{totalAmount}</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
   );
 }
 

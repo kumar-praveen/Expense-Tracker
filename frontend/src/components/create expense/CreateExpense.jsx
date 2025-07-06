@@ -111,7 +111,6 @@ function CreateExpense() {
           </DialogHeader>
 
           <div className="grid gap-4">
-            {/* Description */}
             <div className="grid gap-2">
               <Label htmlFor="description" className="text-gray-300">
                 Description

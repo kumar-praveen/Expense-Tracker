@@ -145,6 +145,7 @@ function UpdateExpense({ expense, onUpdate }) {
                       "House Rent",
                       "Grocery",
                       "Food",
+                      "Education",
                       "Shopping",
                       "Entertainment",
                       "Other",

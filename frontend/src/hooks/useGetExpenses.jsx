@@ -24,13 +24,15 @@ export const useGetExpenses = () => {
         );
         if (res.data.success) {
           dispatch(setExpenses(res.data.expense));
-        } else {
-          category = "";
+          toast.success(`All expenses of catergory ${category}`);
+        }
+      } catch (err) {
+        if (err.response && err.response.status === 404) {
           dispatch(setExpenses([]));
           toast.warning("No expenses found");
+        } else {
+          toast.error("Something went wrong");
         }
-      } catch (error) {
-        console.error("Error fetching expenses:", error);
       }
     };
     fetchExpenses();
